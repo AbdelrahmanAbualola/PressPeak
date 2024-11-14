@@ -2,15 +2,20 @@
 # Import Libraries
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
-import subprocess
+import spacy.cli
+import os
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+# Set a custom directory to install the model in user space (avoid permission errors)
+model_dir = os.path.expanduser("~/.spacy")
+
+# Check if the model is already installed
 try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
-    subprocess.run(["python3", "-m", "spacy", "download", "en_core_web_md"], check=True)
+    spacy.cli.download("en_core_web_md", force=True)
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
