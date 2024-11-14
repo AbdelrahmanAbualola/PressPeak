@@ -16,4 +16,3 @@ Webtrench
 
 thinc
 spacy
-en_core_web_md
