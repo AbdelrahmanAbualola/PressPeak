@@ -19,8 +19,8 @@ except OSError:
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 """
-# Define the custom directory for downloading the model
-custom_model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'en_core_web_md')
+# Define a custom directory for downloading the model
+custom_model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models')
 
 # Check if the custom model directory exists, and create it if not
 if not os.path.exists(custom_model_dir):
@@ -30,23 +30,25 @@ if not os.path.exists(custom_model_dir):
 os.environ["SPACY_DATA"] = custom_model_dir
 
 try:
-    # Use subprocess to download the model using pip
+    # Use subprocess to download the model using pip (this can be removed if the model is already installed)
     subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md", "--target", custom_model_dir])
-    
-    # Check if the required model files exist in the custom directory
-    if os.path.exists(os.path.join(custom_model_dir, "en_core_web_md")):
+
+    # Verify that the model directory exists and contains the necessary files
+    model_path = os.path.join(custom_model_dir, 'en_core_web_md')
+    if os.path.exists(model_path):
         # Load the model from the custom directory
-        nlp = spacy.load(custom_model_dir)
+        nlp = spacy.load(model_path)
         print("Model loaded successfully!")
     else:
-        print(f"Model not found in {custom_model_dir}. Please ensure the model is correctly placed.")
-    
+        print(f"Model not found in {model_path}. Please check the installation.")
+
 except subprocess.CalledProcessError as e:
     print(f"Error during subprocess execution: {e}")
     print(f"Return code: {e.returncode}")
     print(f"Command: {e.cmd}")
 except Exception as e:
     print(f"Error loading model: {e}")
+
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
