@@ -2,6 +2,7 @@
 # Import Libraries
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
+import subprocess
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
@@ -9,12 +10,8 @@ import spacy
 try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
-    # Download the model if it is not found
-    import spacy.cli
-    spacy.cli.download("en_core_web_md")
+    subprocess.run(["python3", "-m", "spacy", "download", "en_core_web_md"], check=True)
     nlp = spacy.load("en_core_web_md")
-
-nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 
