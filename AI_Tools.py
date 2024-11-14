@@ -6,7 +6,14 @@ import spacy
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-spacy.cli.download('en_core_web_md', force=True)
+try:
+    nlp = spacy.load("en_core_web_md")
+except OSError:
+    # Download the model if it is not found
+    import spacy.cli
+    spacy.cli.download("en_core_web_md")
+    nlp = spacy.load("en_core_web_md")
+
 nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
