@@ -1,0 +1,19 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+html {font-size: 13px !important;}
+body {font-family: 'Poppins', sans-serif; font-weight: 200 !important;}
+
+h1 {font-size: 34px !important;}
+h2 {font-size: 30px !important;}
+h3 {font-size: 18px !important; padding: 0.4rem 0px 0.4rem !important;}
+h4 {font-size: 15px !important;}
+p {font-size: 13px !important;}
+li {font-size: 13px !important;}
+
+/* Elements*/
+.st-emotion-cache-z5fcl4 {padding: 3rem 3rem 10rem !important;}
+hr {margin: 1.5em 0px !important;}
+
+section[data-testid="stSelectbox"] {font-size:10px !important;}
+section[data-testid="stSidebar"] {width: 280px !important;}

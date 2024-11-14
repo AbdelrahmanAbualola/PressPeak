@@ -1,0 +1,18 @@
+streamlit_tags==1.2.8
+stqdm==0.0.5
+
+XlsxWriter==3.2.0
+pandas==2.2.1
+numpy
+datetime==5.4
+
+requests
+lxml
+lxml_html_clean 
+
+goose3
+newspaper3k
+Webtrench
+
+spacy
+en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.1.0/en_core_web_md-3.1.0.tar.gz
