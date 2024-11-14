@@ -3,10 +3,13 @@
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
 import spacy.cli
+import subprocess
+import sys
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+"""
 # Check if the model is already installed
 try:
     nlp = spacy.load("en_core_web_md")
@@ -14,8 +17,21 @@ except OSError:
     spacy.cli.download("en_core_web_md")
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-
+"""
+# Check if spaCy and the model are installed
+try:
+    import spacy
+    spacy.load('en_core_web_md')  # Try to load the model
+except (ImportError, OSError):
+    # If spaCy or the model is not installed, install them
+    print("spaCy or en_core_web_md model not found. Installing...")
+    
+    # Install spaCy and the model using pip
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "spacy"])
+    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md"])
+    
+    # Load the model after installation
+    nlp = spacy.load('en_core_web_md')
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
