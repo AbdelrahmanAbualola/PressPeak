@@ -37,6 +37,16 @@ try:
     if os.path.exists(os.path.join(custom_model_dir, "en_core_web_md")):
         # Load the model from the custom directory
         nlp = spacy.load(custom_model_dir)
+        print("Model loaded successfully!")
+    else:
+        print(f"Model not found in {custom_model_dir}. Please ensure the model is correctly placed.")
+    
+except subprocess.CalledProcessError as e:
+    print(f"Error during subprocess execution: {e}")
+    print(f"Return code: {e.returncode}")
+    print(f"Command: {e.cmd}")
+except Exception as e:
+    print(f"Error loading model: {e}")
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
