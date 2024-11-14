@@ -2,9 +2,10 @@
 # Import Libraries
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
+import os
 import subprocess
 import sys
-import os
+
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
@@ -18,8 +19,8 @@ except OSError:
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 """
-# Define a custom directory for downloading the model
-custom_model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models')
+# Define the custom directory for downloading the model
+custom_model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'en_core_web_md')
 
 # Check if the custom model directory exists, and create it if not
 if not os.path.exists(custom_model_dir):
@@ -31,12 +32,11 @@ os.environ["SPACY_DATA"] = custom_model_dir
 try:
     # Use subprocess to download the model using pip
     subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md", "--target", custom_model_dir])
-    # Load the model after downloading
-    nlp = spacy.load(os.path.join(custom_model_dir, "en_core_web_md"))
-except subprocess.CalledProcessError as e:
-    print(f"Error during subprocess execution: {e}")
-    print(f"Return code: {e.returncode}")
-    print(f"Command: {e.cmd}")
+    
+    # Check if the required model files exist in the custom directory
+    if os.path.exists(os.path.join(custom_model_dir, "en_core_web_md")):
+        # Load the model from the custom directory
+        nlp = spacy.load(custom_model_dir)
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
