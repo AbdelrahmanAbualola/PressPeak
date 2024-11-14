@@ -3,6 +3,7 @@
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
 import spacy.cli
+import os
 import subprocess
 import sys
 
@@ -18,20 +19,22 @@ except OSError:
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 """
-# Check if spaCy and the model are installed
-try:
-    import spacy
-    spacy.load('en_core_web_md')  # Try to load the model
-except (ImportError, OSError):
-    # If spaCy or the model is not installed, install them
-    print("spaCy or en_core_web_md model not found. Installing...")
-    
-    # Install spaCy and the model using pip
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "spacy"])
-    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md"])
-    
-    # Load the model after installation
-    nlp = spacy.load('en_core_web_md')
+# Define the custom model path where you've uploaded the model tarball
+model_path = "models/en_core_web_md-3.1.0.tar.gz"
+
+# Check if the model exists in the custom directory
+if not os.path.exists(model_path):
+    # Create the directory if it doesn't exist
+    os.makedirs(model_path, exist_ok=True)
+
+    # Set the environment variable to specify where the model should be downloaded
+    os.environ["SPACY_DATA"] = model_path
+
+    # Download the model to the custom location
+    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md", "--user"])
+
+# Now, spaCy should be able to load the model from the custom directory
+nlp = spacy.load("en_core_web_md")
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
