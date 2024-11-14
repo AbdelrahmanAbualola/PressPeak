@@ -2,10 +2,9 @@
 # Import Libraries
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
-import spacy.cli
-import os
 import subprocess
 import sys
+import os
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
@@ -19,22 +18,25 @@ except OSError:
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 """
-# Define the custom model path where you've uploaded the model tarball
-model_path = "models/en_core_web_md-3.1.0.tar.gz"
+# Define a custom directory for downloading the model
+custom_model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models')
 
-# Check if the model exists in the custom directory
-if not os.path.exists(model_path):
-    # Create the directory if it doesn't exist
-    os.makedirs(model_path, exist_ok=True)
+# Check if the custom model directory exists, and create it if not
+if not os.path.exists(custom_model_dir):
+    os.makedirs(custom_model_dir)
 
-    # Set the environment variable to specify where the model should be downloaded
-    os.environ["SPACY_DATA"] = model_path
+# Set the environment variable to install spaCy models in the custom directory
+os.environ["SPACY_DATA"] = custom_model_dir
 
-    # Download the model to the custom location
-    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md", "--user"])
-
-# Now, spaCy should be able to load the model from the custom directory
-nlp = spacy.load("en_core_web_md")
+try:
+    # Use subprocess to download the model using pip
+    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md", "--target", custom_model_dir])
+    # Load the model after downloading
+    nlp = spacy.load(os.path.join(custom_model_dir, "en_core_web_md"))
+except subprocess.CalledProcessError as e:
+    print(f"Error during subprocess execution: {e}")
+    print(f"Return code: {e.returncode}")
+    print(f"Command: {e.cmd}")
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
