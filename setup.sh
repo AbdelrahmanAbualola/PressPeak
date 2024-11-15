@@ -14,3 +14,4 @@ python3 --version
 
 python -m pip install spacy
 python -m spacy download en_core_web_md
+pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.0/en_core_web_md-3.4.0.tar.gz
