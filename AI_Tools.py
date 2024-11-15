@@ -10,39 +10,30 @@ from pathlib import Path
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-# Global variable to hold the SpaCy NLP model
+# Global variable for the NLP model
 nlp = None
 
+# Initialization function to download and load the model
 def initialize_nlp_model():
-    """
-    Initialize the SpaCy NLP model and store it in the global `nlp` variable.
-    """
     global nlp
     model_name = "en_core_web_md"
-    local_model_dir = Path("./models")  # Local directory to store the model
-    model_path = local_model_dir / model_name
 
-    # Check if the model exists locally
-    if not model_path.exists():
-        # Create the local directory if it doesn't exist
-        local_model_dir.mkdir(parents=True, exist_ok=True)
-        try:
-            # Download the model into the local directory
-            from spacy.cli import download
-            download(model_name, dir=str(local_model_dir))
-        except Exception as e:
-            print(f"Error downloading {model_name}: {e}")
-            raise
-
-    # Load the model from the local directory
     try:
-        nlp = spacy.load(model_path)
-    except Exception as e:
-        print(f"Error loading {model_name} from {model_path}: {e}")
-        raise
+        # Try to load the model
+        nlp = spacy.load(model_name)
+    except OSError:
+        try:
+            # Download the model using SpaCy's CLI
+            from spacy.cli import download
+            download(model_name)
+            nlp = spacy.load(model_name)  # Load the model after downloading
+        except Exception as e:
+            print(f"Error downloading or loading {model_name}: {e}")
+            raise
 
 # Call the initialization function during module import
 initialize_nlp_model()
+
 
 
 
