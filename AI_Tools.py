@@ -16,7 +16,6 @@ try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
     subprocess.run(["sh", "setup.sh"])
-    model_path = os.path.expanduser("~/spaCy_models/en_core_web_md")
     nlp = spacy.load(model_path)
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
