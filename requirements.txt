@@ -1,17 +1,18 @@
-streamlit_tags
-stqdm
+streamlit_tags==1.2.8
+stqdm==0.0.5
 
-XlsxWriter
-pandas
-numpy
-datetime
+XlsxWriter==3.2.0
+pandas==2.2.2
+numpy==2.0.2
+datetime==5.4
 
-requests
-lxml
-lxml_html_clean 
+requests==2.31.0
+lxml==5.1.0
+lxml_html_clean==0.3.1 
 
-goose3
-newspaper3k
-Webtrench
+goose3==3.1.19
+newspaper3=0.2.8
+Webtrench=0.1.2
 
-spacy
+spacy==3.8.2
+
