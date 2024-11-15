@@ -10,9 +10,9 @@ requests==2.31.0
 lxml==5.1.0
 lxml_html_clean==0.3.1 
 
-goose3==3.1.19
-newspaper3==0.2.8
-Webtrench==0.1.2
+goose3=
+newspaper3
+Webtrench
 
 spacy==3.8.2
 
