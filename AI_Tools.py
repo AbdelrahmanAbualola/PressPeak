@@ -10,10 +10,10 @@ import spacy.cli
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Global variable for the NLP model
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_md")
 except OSError:
-    spacy.cli.download("en_core_web_sm", "--target=/tmp/custom_spacy")
-    nlp = spacy.load("en_core_web_sm")
+    spacy.cli.download("en_core_web_md")
+    nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 
