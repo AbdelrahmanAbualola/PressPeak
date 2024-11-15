@@ -1,10 +1,10 @@
 streamlit_tags==1.2.8
 stqdm==0.0.5
 
-XlsxWriter==3.2.0
-pandas==2.2.1
-numpy>=1.26.0,<2.0
-datetime==5.4
+XlsxWriter
+pandas
+numpy
+datetime
 
 requests
 lxml
@@ -14,7 +14,7 @@ goose3
 newspaper3k
 Webtrench
 
-spacy==3.8.2
+spacy
 catalogue
 cymem
 jinja2
