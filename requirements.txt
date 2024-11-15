@@ -14,6 +14,5 @@ goose3
 newspaper3k
 Webtrench
 
-thinc
 spacy
 https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.0/en_core_web_md-3.4.0.tar.gz
