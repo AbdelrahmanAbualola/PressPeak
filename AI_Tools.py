@@ -2,8 +2,6 @@
 # Import Libraries
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
-import os
-from pathlib import Path
 
 
 
@@ -11,31 +9,12 @@ from pathlib import Path
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Global variable for the NLP model
-nlp = None
-
-# Initialization function to download and load the model
-def initialize_nlp_model():
-    global nlp
-    model_name = "en_core_web_md"
-
-    try:
-        # Try to load the model
-        nlp = spacy.load(model_name)
-    except OSError:
-        try:
-            # Download the model using SpaCy's CLI
-            from spacy.cli import download
-            download(model_name)
-            nlp = spacy.load(model_name)  # Load the model after downloading
-        except Exception as e:
-            print(f"Error downloading or loading {model_name}: {e}")
-            raise
-
-# Call the initialization function during module import
-initialize_nlp_model()
-
-
-
+try:
+    nlp = spacy.load("en_core_web_md")
+except:
+    spacy.cli.download('en_core_web_md')
+    nlp = spacy.load("en_core_web_md")
+#—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
