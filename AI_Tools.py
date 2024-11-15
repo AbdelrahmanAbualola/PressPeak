@@ -16,8 +16,8 @@ try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
     subprocess.run(["sh", "setup.sh"])
-    spacy.util.fix_globally_installed_model("en_core_web_md")
-    nlp = spacy.load("en_core_web_md")
+    model_path = "/home/user/dir/pages/models/en_core_web_md"
+    nlp = spacy.load(model_path)
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
