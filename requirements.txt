@@ -10,7 +10,7 @@ requests==2.31.0
 lxml==5.1.0
 lxml_html_clean==0.3.1 
 
-goose3=
+goose3
 newspaper3
 Webtrench
 
