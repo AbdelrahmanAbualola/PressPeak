@@ -18,5 +18,5 @@ python -m pip install spacy
 mkdir -p ~/spaCy_models
 export SPACY_DOWNLOAD_LOCATION=~/spaCy_models
 
-
 python -m spacy download en_core_web_md
+ls ~/spaCy_models
