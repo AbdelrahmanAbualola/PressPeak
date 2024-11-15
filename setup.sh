@@ -11,3 +11,6 @@ python3 -m pip install --upgrade pip
 
 # Verify Python version
 python3 --version
+
+python -m pip install spacy
+python -m spacy download en_core_web_md
