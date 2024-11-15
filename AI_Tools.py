@@ -10,7 +10,6 @@ import sys
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-"""
 # Check if the model is already installed
 try:
     nlp = spacy.load("en_core_web_md")
@@ -18,41 +17,6 @@ except OSError:
     spacy.cli.download("en_core_web_md")
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-"""
-# Define the custom directory for downloading the model
-custom_model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'en_core_web_md')
-
-# Check if the custom model directory exists, and create it if not
-if not os.path.exists(custom_model_dir):
-    os.makedirs(custom_model_dir)
-
-# Set the environment variable to install spaCy models in the custom directory
-os.environ["SPACY_DATA"] = custom_model_dir
-
-# Function to load spaCy model
-def load_spacy_model():
-    try:
-        # Check if the required model files exist in the custom directory
-        model_path = os.path.join(custom_model_dir, "en_core_web_md")
-        if not os.path.exists(model_path):
-            # Use subprocess to download the model using pip
-            subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md", "--target", custom_model_dir])
-
-        # Load the model from the custom directory
-        nlp = spacy.load(model_path)
-        print("Model loaded successfully!")
-        return nlp
-    except subprocess.CalledProcessError as e:
-        print(f"Error during subprocess execution: {e}")
-        print(f"Return code: {e.returncode}")
-        print(f"Command: {e.cmd}")
-    except Exception as e:
-        print(f"Error loading model: {e}")
-    return None
-
-# Load the model
-nlp = load_spacy_model()
-
 
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
