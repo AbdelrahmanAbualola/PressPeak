@@ -2,17 +2,26 @@
 # Import Libraries
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
-
+import spacy.cli
+import os
+import subprocess
 
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Global variable for the NLP model
+path = "/home/adminuser/venv/lib/python3.12/site-packages"
+os.makedirs(path, exist_ok=True)
+os.chmod(path, 0o777)
+
+subprocess.run(["pip", "install", "--upgrade", "pip"], check=True)
+subprocess.run(["pip", "install", "--upgrade", "setuptools"], check=True)
+
 try:
     nlp = spacy.load("en_core_web_md")
-except:
-    spacy.cli.download('en_core_web_md')
+except OSError:
+    spacy.cli.download("en_core_web_md", "--target=/tmp/custom_spacy")
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
