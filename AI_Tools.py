@@ -11,13 +11,14 @@ subprocess.run(["sh", "setup.sh"], check=True, stdout=subprocess.PIPE, stderr=su
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Global variable for the NLP model
+"""
 try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
     #subprocess.run(["pip", "install", "--user", "spacy[en_core_web_md]"], check=True)
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
+"""
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Function (1) Relevancy SCore
