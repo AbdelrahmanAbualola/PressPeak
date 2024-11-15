@@ -13,4 +13,11 @@ python3 -m pip install --upgrade pip
 python3 --version
 
 python -m pip install spacy
+
+# Create the models directory if it doesn't exist
+mkdir -p /home/user/dir/pages/models
+
+# Set the custom download location
+export SPACY_DOWNLOAD_LOCATION=/home/user/dir/pages/models
+
 python -m spacy download en_core_web_md
