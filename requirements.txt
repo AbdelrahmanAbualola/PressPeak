@@ -3,7 +3,7 @@ stqdm==0.0.5
 
 XlsxWriter==3.2.0
 pandas==2.2.1
-numpy
+numpy==2.0.0
 datetime==5.4
 
 requests
