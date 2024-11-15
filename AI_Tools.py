@@ -13,7 +13,7 @@ import subprocess
 try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"], check=True)
+    subprocess.run(["pip", "install", "--user", "spacy[en_core_web_md]"], check=True)
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
