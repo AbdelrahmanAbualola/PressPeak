@@ -5,7 +5,7 @@ import spacy
 import spacy.cli
 import subprocess
 
-subprocess.run(["sh", "setup.sh"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+subprocess.run(["sh", "setup.sh"])
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
