@@ -15,23 +15,3 @@ newspaper3k
 Webtrench
 
 spacy
-catalogue
-cymem
-jinja2
-langcodes
-murmurhash
-packaging
-preshed
-pydantic
-requests
-setuptools
-spacy-legacy
-spacy-loggers
-srsly
-thinc
-tqdm
-typer
-wasabi
-weasel
-
-
