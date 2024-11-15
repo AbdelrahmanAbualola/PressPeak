@@ -5,7 +5,7 @@ import spacy
 import spacy.cli
 import subprocess
 
-subprocess.run(["sh", "setup.sh"])
+
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
@@ -15,7 +15,7 @@ subprocess.run(["sh", "setup.sh"])
 try:
     nlp = spacy.load("en_core_web_md")
 except OSError:
-    subprocess.run(["python", "-m", "pip", "install", "en_core_web_md"], check=True)
+    subprocess.run(["sh", "setup.sh"])
     nlp = spacy.load("en_core_web_md")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
