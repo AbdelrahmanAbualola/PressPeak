@@ -8,7 +8,8 @@ class Keys():
     def Serper():
         Keys = [
             '2bd0b5a8b482a7616d5fc4d180c4121e171411b3',
-            '130438c6d8de0471de1a8f5bfd1112715ca7129e'
+            '130438c6d8de0471de1a8f5bfd1112715ca7129e',
+            '45f389ed3f494410072016a173fce3336ea54cde'
         ]
         
         return Keys
