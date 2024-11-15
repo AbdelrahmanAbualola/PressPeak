@@ -141,7 +141,7 @@ with st.sidebar:
         st.session_state['websites'] = []
         
     with st.popover('Websites',use_container_width=True):
-        websites= st_tags(label='Websites', text='Press enter to add more', maxtags = 10, key='websites',value=st.session_state['websites'])
+        websites= st_tags(label='Websites', text='Only Search these websites', maxtags = 10, key='websites',value=st.session_state['websites'])
         
     if st.session_state['websites'] != websites:
         st.session_state['websites'] = websites
