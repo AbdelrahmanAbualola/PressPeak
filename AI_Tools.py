@@ -3,14 +3,21 @@
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
 import os
-import shutil
 from pathlib import Path
+
 
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-def get_spacy_model():
+# Global variable to hold the SpaCy NLP model
+nlp = None
+
+def initialize_nlp_model():
+    """
+    Initialize the SpaCy NLP model and store it in the global `nlp` variable.
+    """
+    global nlp
     model_name = "en_core_web_md"
     local_model_dir = Path("./models")  # Local directory to store the model
     model_path = local_model_dir / model_name
@@ -29,16 +36,14 @@ def get_spacy_model():
 
     # Load the model from the local directory
     try:
-        return spacy.load(model_path)
+        nlp = spacy.load(model_path)
     except Exception as e:
         print(f"Error loading {model_name} from {model_path}: {e}")
         raise
 
-# Initialize the model
-try:
-    nlp = get_spacy_model()
-except Exception as e:
-    print(f"Failed to initialize Spacy model: {e}")
+# Call the initialization function during module import
+initialize_nlp_model()
+
 
 
 
