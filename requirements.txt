@@ -11,7 +11,7 @@ lxml
 lxml_html_clean
 
 goose3
-newspaper3
+newspaper3k
 Webtrench
 
 spacy==3.8.2
