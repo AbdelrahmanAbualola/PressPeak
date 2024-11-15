@@ -3,20 +3,43 @@
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import spacy
 import os
-import subprocess
-import sys
+import shutil
+from pathlib import Path
 
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Download and Load a pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-# Check if the model is already installed
+def get_spacy_model():
+    model_name = "en_core_web_md"
+    local_model_dir = Path("./models")  # Local directory to store the model
+    model_path = local_model_dir / model_name
+
+    # Check if the model exists locally
+    if not model_path.exists():
+        # Create the local directory if it doesn't exist
+        local_model_dir.mkdir(parents=True, exist_ok=True)
+        try:
+            # Download the model into the local directory
+            from spacy.cli import download
+            download(model_name, dir=str(local_model_dir))
+        except Exception as e:
+            print(f"Error downloading {model_name}: {e}")
+            raise
+
+    # Load the model from the local directory
+    try:
+        return spacy.load(model_path)
+    except Exception as e:
+        print(f"Error loading {model_name} from {model_path}: {e}")
+        raise
+
+# Initialize the model
 try:
-    nlp = spacy.load("en_core_web_md")
-except OSError:
-    spacy.cli.download("en_core_web_md")
-    nlp = spacy.load("en_core_web_md")
-#—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+    nlp = get_spacy_model()
+except Exception as e:
+    print(f"Failed to initialize Spacy model: {e}")
+
 
 
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
