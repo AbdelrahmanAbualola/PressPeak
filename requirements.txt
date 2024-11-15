@@ -20,7 +20,6 @@ cymem
 jinja2
 langcodes
 murmurhash
-numpy
 packaging
 preshed
 pydantic
