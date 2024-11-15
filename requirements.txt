@@ -15,4 +15,4 @@ newspaper3k
 Webtrench
 
 thinc
-spacy
+spacy==3.7.2
