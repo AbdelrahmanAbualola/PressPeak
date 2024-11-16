@@ -10,10 +10,10 @@ import concurrent.futures
 # Load Spacy pre-trained model
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 try:
-    nlp = spacy.load("en_core_web_lg")
+    nlp = spacy.load("en_core_web_md")
 except:
-    spacy.cli.download('en_core_web_lg')
-    nlp = spacy.load("en_core_web_lg")
+    spacy.cli.download('en_core_web_md')
+    nlp = spacy.load("en_core_web_md")
     
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Load MiniLM-L6-H384-uncased pre-trained model
