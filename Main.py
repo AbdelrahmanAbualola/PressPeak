@@ -300,7 +300,9 @@ with Google_Tab:
             Google_Results_All = st.data_editor(Session['Google_Results'],
                             column_config={
                                 'Select':st.column_config.CheckboxColumn(),
-                                "Link": st.column_config.LinkColumn("Link",display_text="Link")},
+                                "Link": st.column_config.LinkColumn("Link",display_text="Link"),
+                                'Relevancy Score': st.column_config.NumberColumn("Relevancy Score", format="%0.2f")
+                                },
                             hide_index=True)
 
         #————————————————————————————————————————————————————————————————————————————————————————————————————————————
