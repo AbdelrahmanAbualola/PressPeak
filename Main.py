@@ -249,7 +249,7 @@ def Articles(keywords_variable, keywords_fixed, keywords_excluded, websites,coun
     try:
         ARTICLES = ARTICLES.drop(['imageUrl','position'],axis=1).rename(columns={'title':'Headline','link':'Link','snippet':'Short Description','date':'Date','source':'Source'})
     except Exception as e:
-        st.error("An Error Occured with Getting Google Results: {e}")
+        st.error(f"An Error Occured with Getting Google Results: {e}")
         
     ARTICLES['Select'] = False
     ARTICLES = pd.DataFrame(ARTICLES)
