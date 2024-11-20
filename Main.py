@@ -272,8 +272,11 @@ def Articles(keywords_variable, keywords_fixed, keywords_excluded, websites,coun
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 if Start_Search:
     st.cache_data.clear()
-    Google_Results = Articles(keywords_variable, keywords_fixed, keywords_excluded, websites,countries, date_range,location,geolocation,language,quantity)
-    Session['Google_Results'] = Google_Results
+    try:
+        Google_Results = Articles(keywords_variable, keywords_fixed, keywords_excluded, websites,countries, date_range,location,geolocation,language,quantity)
+        Session['Google_Results'] = Google_Results
+    except Exception as e:
+        st.error(f"Couldn't Get Google Results, Error: {e}")
 #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
     
     
